@@ -1,0 +1,20 @@
+<%= render "layouts/error", obj:@user %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h4>User info</h4>
+      <%= form_with model: @user do |f| %>
+        <%= f.label :Name %></br>
+        <%= f.text_field :name %></br>
+        
+        <%= f.label :Image %></br>
+        <%= f.file_field :profile_image %></br>
+        
+        <%= f.label :Introduction %></br>
+        <%= f.text_area :introduction %></br>
+        
+        <%= f.submit "Update User", class: "btn btn-secondary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
