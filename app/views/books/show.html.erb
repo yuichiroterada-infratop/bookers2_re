@@ -12,9 +12,22 @@
       <table>
         <tr>
           <th>
-            <%= image_tag @show_book.user.get_profile_image(100,100) %></br>
+            <%= link_to user_path(@show_book.user) do %>
+              <%= image_tag @show_book.user.get_profile_image(100,100) %></br>
+              <%= @show_book.user.name %>
+            <% end %>
           </th>
           
+          <th>
+            <%= link_to book_path(@show_book) do %>
+              <%= @show_book.title %>
+            <% end %>
+          </th>
+          <th>
+            <%= @show_book.body %>
+          </th>
+          <th><%= link_to "Edit", edit_book_path(@show_book), class: "btn btn-sm btn-success" %></th>
+          <th><%= link_to "Destroy", book_path(@show_book), method: :delete, "data-confirm"=>"Are you sure?", class: "btn btn-sm btn-danger" %></th>
         </tr>
       </table>
       

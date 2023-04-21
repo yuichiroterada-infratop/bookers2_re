@@ -1,0 +1,35 @@
+<%= render "layouts/error", obj: @book %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "users/info", user: current_user %>
+      <%= render "books/new", book: @book %>
+    </div>
+    
+    <div class="col-md-8 offset-md-1">
+      <h3>Users</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>name</th>
+            <th></th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <th><%= image_tag user.get_profile_image(100,100) %></th>
+              <th><%= user.name %></th>
+              <th><%= link_to "Show", user_path(user) %></th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
