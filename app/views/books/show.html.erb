@@ -1,2 +1,23 @@
 <h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<%= render "layouts/error", obj: @book %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "users/info", user: current_user %>
+      <%= render "books/new", book: @book %>
+    </div>
+    
+    <div class="col-md-8 off-set-md-1">
+      <h2>Book detail</h2>
+      <table>
+        <tr>
+          <th>
+            <%= image_tag @show_book.user.get_profile_image(100,100) %></br>
+          </th>
+          
+        </tr>
+      </table>
+      
+    </div>
+  </div>
+</div>
