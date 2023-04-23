@@ -8,15 +8,15 @@ class User < ApplicationRecord
   
   has_many :books
   
-  validates :name, length: {minimum:2, maximum:20}
+  validates :name, length: {minimum:2, maximum:20}, uniqueness: true
   validates :introduction, length: {maximum:50}
   
-  def get_profile_image(width, height)
-    unless profile_image.attached?
+  def get_profile_image(size)
+    if profile_image.attached?
+      profile_image.variant(resize: size).processed
+    else
       file_path = Rails.root.join("app/assets/images/default-image.jpg")
       profile_image.attach(io: File.open(file_path), filename: "default-image.jpg", content_type: "image/jpeg")
-    else
-      profile_image.variant(resize_to_limit: [width, height]).processed
     end
   end
   

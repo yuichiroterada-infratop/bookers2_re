@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :is_matching_login_user, only: [:edit, :update]
   
   def index
     @book = Book.new
@@ -7,8 +8,8 @@ class UsersController < ApplicationController
   
   def show
     @book = Book.new
-    user = User.find(params[:id])
-    @books = user.books.all
+    @user = User.find(params[:id])
+    @books = @user.books.all
   end
   
   def edit
@@ -29,5 +30,13 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
   end
+  
+  def is_matching_login_user
+    user = User.find(params[:id])
+    unless user == current_user
+      redirect_to user_path(current_user)
+    end
+  end
+  
   
 end
